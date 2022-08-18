@@ -6,7 +6,7 @@ package interview.ms;
  */
 public class First {
 
-    // 微软 第二场面试   第一个题两个链表交点   第二题 非递归中序遍历树   第三题 编辑距离优化空间
+    // 微软 第二场面试   第一个题两个链表交点   第二题 非递归后序遍历树   第三题 编辑距离优化空间
 
     private static void fun(String s1, String s2){
         int len1 = s1.length(), len2 = s2.length();

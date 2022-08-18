@@ -17,7 +17,7 @@ public class Main304 {
         int lenX = matrix.length, lenY = matrix[0].length;
         dp = new int[lenX+1][lenY+1];
         for(int i = 1; i <= lenX; i++)
-            for(int j = 1; j < lenY; j++)
+            for(int j = 1; j <= lenY; j++)
                 // 计算 dp 的手法
                 dp[i][j] = dp[i-1][j] + dp[i][j-1] + matrix[i-1][j-1] - dp[i-1][j-1] ;
 

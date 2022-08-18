@@ -1,4 +1,4 @@
-package algorithm.leetcode;
+package run_2022.run_2022_07;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +46,7 @@ public class Main51 {
             if(validate(row,col)){
                 visited[row] = col;
                 fun(row+1);
+                // 不回溯也行，因为validate时候没计算后面的值
                 visited[row] = 0;
             }
         }

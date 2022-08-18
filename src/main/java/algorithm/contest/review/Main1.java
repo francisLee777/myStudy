@@ -3,7 +3,7 @@ package algorithm.contest.review;
 import java.util.Scanner;
 
 /**
- *  逆序对个数
+ *  逆序对个数 归排
  * @author lihaoyu
  * @date 2019/11/30 15:41
  */

@@ -13,7 +13,7 @@ public class Main41 {
         // 假设输入nums都是正整数
         int[] res = new int[nums.length];
         for (int num : nums) {
-            if(num < res.length) res[num-1] = 1; // 表示出现过
+            if(num < res.length && num > 0 ) res[num-1] = 1; // 表示出现过
         }
         for (int i = 0; i < res.length; i++) {
             if(res[i] == 0) return i+1;
