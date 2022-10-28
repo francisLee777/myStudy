@@ -1,6 +1,8 @@
 package algorithm.datastructure.tree;
 
 
+import com.sun.org.apache.bcel.internal.generic.FMUL;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -645,6 +647,38 @@ class Node {
         return res;
     }
 
+
+
+    // 2022.10.4  Morris 莫里斯遍历   非递归遍历 空间复杂度 O(1) 时间复杂度 O(n)
+    // https://zhuanlan.zhihu.com/p/530701788
+    public static void MorrisPreVisit(Node root){
+        Node cur = root, mostRight = null;
+        while (cur != null) {
+            // 找左子树的最右子节点
+            if (cur.left != null){
+                mostRight = cur.left;
+                while(mostRight.right != null && mostRight.right != cur){
+                    mostRight = mostRight.right;
+                }
+                // 第一次经过 cur
+                if(mostRight.right == null){
+                    mostRight.right = cur;
+                    // 遍历输出
+                    System.out.println(cur.key);
+                    // 移动 cur 节点
+                    cur = cur.left;
+                }else{
+                    // 第二次经过 cur,  把之前叶节点增加的right指针还原为null
+                    mostRight.right = null;
+                    cur = cur.right;
+                }
+            }else{
+                // 到达最左的叶子节点了
+                System.out.println(cur.key);
+                cur = cur.right;
+            }
+        }
+    }
 
 }
 
