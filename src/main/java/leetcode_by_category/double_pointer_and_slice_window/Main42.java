@@ -1,10 +1,28 @@
-package algorithm.leetcode;
+package leetcode_by_category.double_pointer_and_slice_window;
 
 /**
+ * 接雨水     双指针写法
  * @author lihaoyu
  * @date 2019/12/25 12:22
  */
 public class Main42 {
+
+    public static int trap2(int[] height) {
+        if(height == null || height.length == 0) return 0;
+        int res = 0,left = 0 ,right = height.length-1,leftMax = 0, rightMax = 0;
+        while(left <= right){
+            if(height[left] <= height[right]){
+                res += Math.max(0,leftMax - height[left]);
+                leftMax = Math.max(leftMax,height[left]);
+                left++;
+            }else{
+                res += Math.max(0,rightMax - height[right]);
+                rightMax = Math.max(rightMax,height[right]);
+                right--;
+            }
+        }
+        return res;
+    }
 
 
     public static int trap(int[] height) {
@@ -31,6 +49,6 @@ public class Main42 {
     }
 
     public static void main(String[] args) {
-        System.out.println(trap(new int[]{0,1,0,2,1,0,1,3,2,1,2,1}));
+        System.out.println(trap2(new int[]{0,1,0,2,1,0,1,3,2,1,2,1}));
     }
 }

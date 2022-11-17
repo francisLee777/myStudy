@@ -1,8 +1,9 @@
-package run_2022.run_2022_07;
+package leetcode_by_category.double_pointer_and_slice_window;
 
 import java.util.Arrays;
 
 /**
+ * 双指针滑动窗口，最接近的三数之和
  * @author lihaoyu
  * @date 2022/7/9 16:38
  */
