@@ -7,6 +7,22 @@ package run_2022.run_2022_07;
 public class Main162 {
 
 
+    // 要求要用 log(n) 的时间复杂度
+    public static int findPeakElement2(int[] nums) {
+        if(nums.length == 1 || nums[0] > nums[1]) return 0;
+        if(nums[nums.length-1] > nums[nums.length-2]) return nums.length-1;
+        int left = 0, right = nums.length - 1,mid;
+        while(left < right){
+            mid = (left + right) /2;
+            if(nums[mid+1] > nums[mid]){
+                left = mid+1;
+            }else{
+                right = mid;
+            }
+        }
+        return left;
+    }
+
     public static int findPeakElement(int[] nums) {
         if(nums.length == 1) return 0;
         int[] a = new int[nums.length],b =  new int[nums.length];
