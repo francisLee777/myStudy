@@ -18,15 +18,19 @@ package algorithm.leetcode;
  */
 public class Main287 {
 
+    // 快慢指针做法，数组元素看成链表节点，重复节点说明是带环链表，可快慢指针。
 
     public static int findDuplicate(int[] nums) {
         int start = 1, end = nums.length - 1;
-        while(start < end){
+        while (start < end) {
             int mid = (start + end) >> 1;
             int count = 0;
-            for (int num : nums) count += num <= mid ? 1 : 0;
-            if(count > mid) end = mid;
-            else start = mid + 1;
+            for (int num : nums)
+                count += num <= mid ? 1 : 0;
+            if (count > mid)
+                end = mid;
+            else
+                start = mid + 1;
         }
         return start;
     }
@@ -41,7 +45,7 @@ public class Main287 {
     }
 
     public static void main(String[] args) {
-        System.out.println(findDuplicate2(new int[]{1,3,4,2,2}));
+        System.out.println(findDuplicate2(new int[] { 1, 3, 4, 2, 2 }));
 
     }
 }
