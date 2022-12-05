@@ -1,4 +1,4 @@
-package algorithm.leetcode;
+package leetcode_by_category.double_pointer_and_slice_window;
 
 /**
  * mark 手动收藏
