@@ -30,7 +30,7 @@ public class Main1006 {
         }
     }
 
-    void fun(int n) {
+    public int clumsy(int n) {
         // 操作优先级
         Map<Character, Integer> map = new HashMap();
         map.put('+', 1);
@@ -73,12 +73,12 @@ public class Main1006 {
         }
         while (!ops.isEmpty())
             cal(nums, ops);
-        System.out.println(nums.pop());
+        return nums.pop();
     }
 
     public static void main(String[] args) {
         Main1006 main1006 = new Main1006();
-        main1006.fun(10);
+
     }
 
 }

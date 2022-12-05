@@ -50,13 +50,14 @@ public class Main227 {
         if (s.length() == 0)
             return 0;
         Stack<Integer> number = new Stack<>();
+        // 对首个字符是负号的特殊处理
         if (s.charAt(0) == '-')
             number.add(0);
         Stack<Character> op = new Stack<>();
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            // 是数字
+            // 是数字 直接入栈然后继续
             if (c >= '0' && c <= '9') {
                 int j = i + 1;
                 while (j < s.length() && s.charAt(j) >= '0' && s.charAt(j) <= '9')
@@ -65,7 +66,7 @@ public class Main227 {
                 i = j - 1;
                 continue;
             }
-            // 操作符了
+            // 操作符了，对括号里面首个字符是负号的特殊处理
             if (i > 0 && (s.charAt(i - 1) == '(' && c == '-')) {
                 number.add(0);
             }
@@ -74,6 +75,7 @@ public class Main227 {
                 continue;
             }
             if (c == ')') {
+                // 右括号，一直计算
                 while (op.peek() != '(')
                     cal(number, op);
                 op.pop();
