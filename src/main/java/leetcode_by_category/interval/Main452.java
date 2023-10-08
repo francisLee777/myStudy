@@ -16,7 +16,17 @@ public class Main452 {
     }
 
     public int findMinArrowShots(int[][] points) {
+        // 按照 x 轴先排序
         Arrays.sort(points, Comparator.comparingInt(o -> o[1]));
+        // 然后开始遍历
+        for (int i = 0; i < points.length - 1; i++) {
+            for (int j = i + 1; j < points.length - 1; j++) {
+                // 看一下结尾
+            }
+
+        }
+
+
         return 0;
     }
 }
