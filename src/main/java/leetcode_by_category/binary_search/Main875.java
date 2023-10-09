@@ -27,7 +27,6 @@ public class Main875 {
         return left;
     }
 
-
     int fun(int[] piles, int mid) {
         int sum = 0;
         for (int pile : piles) {
