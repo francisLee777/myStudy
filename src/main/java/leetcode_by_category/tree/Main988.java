@@ -1,5 +1,12 @@
 package leetcode_by_category.tree;
 
+/*
+ * 从叶节点开始的最小字符串
+ *
+ * @author Lihaoyu
+ * @return
+ * @date 2022/12/7 18:12
+ */
 public class Main988 {
     StringBuilder res = new StringBuilder();
 

@@ -3,6 +3,7 @@ package run_2022.run_2022_07;
 import java.util.PriorityQueue;
 
 /**
+ * 手动收藏   用单调队列
  * @author lihaoyu
  * @date 2022/7/17 14:46
  */
