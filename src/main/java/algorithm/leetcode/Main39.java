@@ -28,6 +28,7 @@ public class Main39 {
         if(target < 0){
             return;
         }
+        // 不好的写法  1. dfs树过大，没剪枝   2. 有重复路径，当输入有重复数字时不正确
         for(int i = j; i < nums.length; i++){
             tempList.add(nums[i]);
             fun(nums,i,target-nums[i],tempList,res);
@@ -36,7 +37,7 @@ public class Main39 {
     }
 
     public static void main(String[] args) {
-        List<List<Integer>> list = combinationSum(new int[]{2, 3, 5}, 8);
+        List<List<Integer>> list = combinationSum(new int[]{2, 3,2, 5}, 8);
         System.out.println(list);
     }
 }
