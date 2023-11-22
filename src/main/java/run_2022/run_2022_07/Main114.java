@@ -2,7 +2,7 @@ package run_2022.run_2022_07;
 
 
 /**
- * 二叉树转链表，原地法，手动收藏
+ * 二叉树转链表，原地法，手动收藏。
  *
  * @author lihaoyu
  * @date 2022/7/13 22:54
@@ -17,7 +17,6 @@ public class Main114 {
         TreeNode node2 = new TreeNode(3);
         root.left = node1;
         node1.left = node2;
-
         Main114 main114 = new Main114();
         main114.flatten2(root);
         System.out.println(root);
