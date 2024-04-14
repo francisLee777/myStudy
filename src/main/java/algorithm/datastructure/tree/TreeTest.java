@@ -6,6 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
+
+// TreeMap/TreeSet 底层是红黑树，即平衡的二叉搜索树。插入、删除和查找元素都是 log(n)，注意不是Map。优势在于可以范围查询，遍历全体时可以按照顺序, 查找最大/小值是 log(n)
+// PriorityQueue 优先级队列，底层是数组，插入、删除是 log(n)，查找最小/大值是 O(1) 其他是 O(n)
+
+
 class Node {
     int key;
     Node left;

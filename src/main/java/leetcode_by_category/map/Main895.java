@@ -1,74 +1,98 @@
 package leetcode_by_category.map;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
+ * 手动收藏
+ * 设计一个类似堆栈的数据结构，将元素推入堆栈，并从堆栈中弹出出现频率最高的元素。
+ * <p>
+ * 实现 FreqStack 类:
+ * <p>
+ * FreqStack() 构造一个空的堆栈。
+ * void push(int val) 将一个整数 val 压入栈顶。
+ * int pop() 删除并返回堆栈中出现频率最高的元素。
+ * 如果出现频率最高的元素不只一个，则移除并返回最接近栈顶的元素。
+ *
  * @author lihaoyu
  * @date 2023/3/16 09:33
  */
 public class Main895 {
-
-
+    public static void main(String[] args) {
+        FreqStack freqStack = new FreqStack();
+        freqStack.push(5);
+        freqStack.push(7);
+        freqStack.push(5);
+        freqStack.push(7);
+        freqStack.push(4);
+        freqStack.push(5);
+        freqStack.pop();
+        freqStack.pop();
+        freqStack.pop();
+        freqStack.pop();
+    }
 }
 
 
 class FreqStack {
-    // 第一层 key :  频率, 第二层 key 数字， value是 计数器值
-    TreeMap<Integer, Map<Integer, List<Integer>>> tree = new TreeMap<>(Comparator.reverseOrder());
-    // key是数字， value是频率
-    Map<Integer, Integer> map = new HashMap<>();
+    //  key :  频率,  数字集合
+    TreeMap<Integer, HashSet<Integer>> tree = new TreeMap<>(Comparator.reverseOrder());
+    // key是数字， value是在栈中出现的下标集合。 如果频率一样时，对比最后一个下标
+    Map<Integer, List<Integer>> map = new HashMap<>();
 
+    // 全局count，用于比较下标
     int count = 0;
 
     public FreqStack() {
     }
 
     public void push(int val) {
-        map.put(val, map.getOrDefault(val, 0) + 1);
-        // oldFrequent 新频率
-        Integer newFrequent = map.get(val);
-        if (!tree.containsKey(newFrequent)) {
-            tree.put(newFrequent, new HashMap<>());
+        map.putIfAbsent(val, new ArrayList<>());
+        map.get(val).add(count++);
+        // 如果之前的频率不为0，要从老频率里面移出来
+        Integer oldFre = map.get(val).size() - 1;
+        Integer newFre = oldFre + 1;
+        if (oldFre != 0) {
+            tree.get(oldFre).remove(val);
         }
-        // 从老频率里面放到新频率里面， 要注意可能之前的频率是0不存在
-        Map<Integer, List<Integer>> oldMap = tree.get(newFrequent - 1);
-        List<Integer> temp;
-        if (oldMap != null) {
-            temp = oldMap.get(val);
-            temp.add(count++);
-            // 放到新的，老的移除
-            tree.get(newFrequent).put(val, temp);
-            tree.get(newFrequent - 1).remove(val);
-        } else {
-            temp = new ArrayList<>();
-            temp.add(count++);
-            tree.get(newFrequent).put(val, temp);
-        }
-
-
+        tree.putIfAbsent(newFre, new HashSet<>());
+        tree.get(newFre).add(val);
     }
 
     public int pop() {
-        Map.Entry<Integer, Map<Integer, List<Integer>>> entry = tree.firstEntry();
-        System.out.println("最大的频率是 " + entry.getKey().toString());
-        Map<Integer, List<Integer>> tempMap = entry.getValue();
-        int tempCount = -1, tempVal = -1;
-        for (Map.Entry<Integer, List<Integer>> integerListEntry : tempMap.entrySet()) {
-            List<Integer> list = integerListEntry.getValue();
-            if (list.get(list.size() - 1) > tempCount) {
-                tempCount = list.get(list.size() - 1);
-                tempVal = integerListEntry.getKey();
+        // 测试保证有数据
+        // 先找频率最大的数字有哪些
+        Integer oldFre = tree.firstKey();
+        Map.Entry<Integer, HashSet<Integer>> oldFreEntry = tree.firstEntry();
+        Integer newFre = oldFre - 1;
+        // 循环这些数字,通过下标找最新的
+        Integer newIndex = -1;
+        Integer newNumber = -1;
+        Iterator<Integer> iterator = oldFreEntry.getValue().iterator();
+        while (iterator.hasNext()) {
+            Integer temp = iterator.next();
+            List<Integer> indexList = map.get(temp);
+            if (newIndex < indexList.get(indexList.size() - 1)) {
+                newIndex = indexList.get(indexList.size() - 1);
+                newNumber = temp;
             }
         }
-        List<Integer> remove = tempMap.remove(tempVal);
-        remove.remove(remove.size() - 1);
-
-        map.put(tempVal, map.get(tempVal) - 1);
-        return tempVal;
+        // 得到了频率最大且最新的数及其下标
+        // 从老频率中删除
+        oldFreEntry.getValue().remove(newNumber);
+        if (oldFreEntry.getValue().isEmpty()) {
+            tree.pollFirstEntry();
+        }
+        // 放到新频率里面
+        if (newFre != 0) {
+            tree.putIfAbsent(newFre, new HashSet<>());
+            tree.get(newFre).add(newNumber);
+        }
+        // 下标要移除
+        map.get(newNumber).remove(map.get(newNumber).size() - 1);
+        if (map.get(newNumber).isEmpty()) {
+            map.remove(newNumber);
+        }
+        System.out.println("出的数字是 " + newNumber + "老频率为:" + oldFre);
+        return newNumber;
     }
 }
