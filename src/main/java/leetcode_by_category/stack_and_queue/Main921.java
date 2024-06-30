@@ -1,8 +1,13 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
 import java.util.Stack;
 
 public class Main921 {
+
+    public static void main(String[] args) {
+        Main921 main921 = new Main921();
+        System.out.println(main921.minAddToMakeValid("()))(("));
+    }
 
     public int minAddToMakeValid(String s) {
         Stack<Character> stack = new Stack<>();
@@ -17,10 +22,5 @@ public class Main921 {
             }
         }
         return stack.size();
-    }
-
-    public static void main(String[] args) {
-        Main921 main921 = new Main921();
-        System.out.println(main921.minAddToMakeValid("()))(("));
     }
 }

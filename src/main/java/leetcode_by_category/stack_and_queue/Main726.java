@@ -1,4 +1,4 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,21 +15,15 @@ import java.util.TreeMap;
  * 由括号括起的化学式并佐以数字（可选择性添加）也是化学式。
  * 例如 "(H2O2)" 和 "(H2O2)3" 是化学式。
  * 返回所有原子的数量，格式为：第一个（按字典序）原子的名字，跟着它的数量（如果数量大于 1），然后是第二个原子的名字（按字典序），跟着它的数量（如果数量大于 1），以此类推。
+ *
  * @author lihaoyu
  * @date 2022/12/6 21:49
  */
 public class Main726 {
 
-    class Node {
-        String ele; // 元素
-        int count; // 个数
-        boolean flag; // 是否是 (
-
-        public Node(String ele, int count, boolean flag) {
-            this.ele = ele;
-            this.count = count;
-            this.flag = flag;
-        }
+    public static void main(String[] args) {
+        Main726 main726 = new Main726();
+        System.out.println(main726.countOfAtoms("(OH)"));
     }
 
     String countOfAtoms(String formula) {
@@ -70,7 +64,7 @@ public class Main726 {
                     k++;
                 }
                 int num = 1;
-                if(k != i+1) num = Integer.parseInt(formula.substring(i + 1, k));
+                if (k != i + 1) num = Integer.parseInt(formula.substring(i + 1, k));
                 List<Node> tempList = new ArrayList<>();
                 while (!stack.isEmpty() && !stack.peek().flag) {
                     // 里面的元素都乘以倍数
@@ -94,16 +88,23 @@ public class Main726 {
         }
 
         StringBuilder sb = new StringBuilder();
-        map.forEach((k,v)->{
-            sb.append(k);
-            if(v.count != 1)sb.append(v.count);}
+        map.forEach((k, v) -> {
+                    sb.append(k);
+                    if (v.count != 1) sb.append(v.count);
+                }
         );
         return sb.toString();
     }
 
+    class Node {
+        String ele; // 元素
+        int count; // 个数
+        boolean flag; // 是否是 (
 
-    public static void main(String[] args) {
-        Main726 main726 = new Main726();
-        System.out.println(main726.countOfAtoms("(OH)"));
+        public Node(String ele, int count, boolean flag) {
+            this.ele = ele;
+            this.count = count;
+            this.flag = flag;
+        }
     }
 }

@@ -1,4 +1,4 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
 import java.util.Stack;
 
@@ -32,6 +32,12 @@ import java.util.Stack;
  */
 public class Main1106 {
 
+    public static void main(String[] args) {
+        Main1106 main1106 = new Main1106();
+        System.out.println(main1106.parseBoolExpr("|(f,t)"));
+
+    }
+
     public boolean parseBoolExpr(String expression) {
         Stack<Character> stack = new Stack<>();
         Stack<Character> tempStack = new Stack<>();
@@ -53,25 +59,22 @@ public class Main1106 {
 
                     boolean tempRes = true;
                     Character temp = tempStack.pop();
-                    if (temp == 'f')
-                        tempRes = false;
-                    else
-                        tempRes = true;
+                    tempRes = temp != 'f';
                     if (op == '&')
                         while (!tempStack.isEmpty()) {
                             temp = tempStack.pop();
                             if (temp == 'f')
-                                tempRes = tempRes & false;
+                                tempRes = false;
                             else
-                                tempRes = tempRes & true;
+                                tempRes = tempRes;
                         }
                     else if (op == '|')
                         while (!tempStack.isEmpty()) {
                             temp = tempStack.pop();
                             if (temp == 'f')
-                                tempRes = tempRes | false;
+                                tempRes = tempRes;
                             else
-                                tempRes = tempRes | true;
+                                tempRes = true;
                         }
                     else if (op == '!') {
                         tempRes = !tempRes;
@@ -85,12 +88,6 @@ public class Main1106 {
                 }
             }
         }
-        return stack.peek() == 'f' ? false : true;
-    }
-
-    public static void main(String[] args) {
-        Main1106 main1106 = new Main1106();
-        System.out.println(main1106.parseBoolExpr("|(f,t)"));
-
+        return stack.peek() != 'f';
     }
 }

@@ -1,8 +1,13 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
 import java.util.Stack;
 
 public class Main907 {
+
+    public static void main(String[] args) {
+        Main907 main907 = new Main907();
+        System.out.println(main907.sumSubarrayMins(new int[]{1, 2, 1}));
+    }
 
     public int sumSubarrayMins(int[] arr) {
         // 左边和右边第一个小于它的 位置下标， 单调栈
@@ -40,10 +45,5 @@ public class Main907 {
             res = (res + (((long) (left[i] - i)) * ((long) (i - right[i])) * ((long) (arr[i])))) % 100000007;
         }
         return (int) res;
-    }
-
-    public static void main(String[] args) {
-        Main907 main907 = new Main907();
-        System.out.println(main907.sumSubarrayMins(new int[] { 1, 2, 1 }));
     }
 }

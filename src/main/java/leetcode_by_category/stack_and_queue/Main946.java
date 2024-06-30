@@ -1,8 +1,12 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
 import java.util.Stack;
 
 public class Main946 {
+
+    public static void main(String[] args) {
+        Main946 main946 = new Main946();
+    }
 
     public boolean validateStackSequences(int[] pushed, int[] popped) {
         Stack<Integer> stack = new Stack<>();
@@ -16,10 +20,6 @@ public class Main946 {
             stack.pop();
         }
         return stack.isEmpty();
-    }
-
-    public static void main(String[] args) {
-        Main946 main946 = new Main946();
     }
 
 }

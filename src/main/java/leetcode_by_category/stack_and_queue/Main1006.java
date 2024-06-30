@@ -1,10 +1,15 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 public class Main1006 {
+
+    public static void main(String[] args) {
+        Main1006 main1006 = new Main1006();
+
+    }
 
     // 计算一次
     void cal(Stack<Integer> number, Stack<Character> op) {
@@ -74,11 +79,6 @@ public class Main1006 {
         while (!ops.isEmpty())
             cal(nums, ops);
         return nums.pop();
-    }
-
-    public static void main(String[] args) {
-        Main1006 main1006 = new Main1006();
-
     }
 
 }
