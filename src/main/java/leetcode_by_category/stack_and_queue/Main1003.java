@@ -1,8 +1,13 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
 import java.util.Stack;
 
 public class Main1003 {
+
+    public static void main(String[] args) {
+        Main1003 main1003 = new Main1003();
+        System.out.println(main1003.isValid("abccba"));
+    }
 
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack();
@@ -19,10 +24,5 @@ public class Main1003 {
             }
         }
         return stack.isEmpty();
-    }
-
-    public static void main(String[] args) {
-        Main1003 main1003 = new Main1003();
-        System.out.println(main1003.isValid("abccba"));
     }
 }

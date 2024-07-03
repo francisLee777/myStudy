@@ -1,8 +1,5 @@
-package leetcode_by_category.stack;
+package leetcode_by_category.stack_and_queue;
 
-import com.google.common.collect.Lists;
-
-import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -11,26 +8,30 @@ import java.util.Stack;
  */
 public class Main735 {
 
-    public int[] asteroidCollision(int[] asteroids){
+    public static void main(String[] args) {
+
+    }
+
+    public int[] asteroidCollision(int[] asteroids) {
         Stack<Integer> stack = new Stack<>();
         for (int num : asteroids) {
-            if(stack.isEmpty() || stack.peek() * num > 0 || (stack.peek() < 0 && num > 0)){
+            if (stack.isEmpty() || stack.peek() * num > 0 || (stack.peek() < 0 && num > 0)) {
                 stack.add(num);
                 continue;
             }
             // 需要出栈的场景
-            while(!stack.isEmpty() && (stack.peek() > 0 && num < 0) && Math.abs(stack.peek()) < Math.abs(num)){
+            while (!stack.isEmpty() && (stack.peek() > 0 && num < 0) && Math.abs(stack.peek()) < Math.abs(num)) {
                 stack.pop();
             }
-            if(stack.isEmpty()){
+            if (stack.isEmpty()) {
                 stack.add(num);
                 continue;
             }
-            if((stack.peek() > 0 && num < 0) && Math.abs(stack.peek()) == Math.abs(num)){
+            if ((stack.peek() > 0 && num < 0) && Math.abs(stack.peek()) == Math.abs(num)) {
                 stack.pop();
                 continue;
             }
-            if((stack.peek() > 0 && num < 0) && Math.abs(stack.peek()) > Math.abs(num)){
+            if ((stack.peek() > 0 && num < 0) && Math.abs(stack.peek()) > Math.abs(num)) {
                 continue;
             }
             stack.add(num);
@@ -40,9 +41,5 @@ public class Main735 {
             res[i] = stack.get(i);
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

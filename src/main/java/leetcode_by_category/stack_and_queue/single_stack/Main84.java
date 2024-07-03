@@ -1,7 +1,5 @@
-package leetcode_by_category.stack.single_stack;
+package leetcode_by_category.stack_and_queue.single_stack;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -9,6 +7,10 @@ import java.util.Stack;
  * @date 2022/11/24 20:56
  */
 public class Main84 {
+    public static void main(String[] args) {
+        System.out.println(new Main84().largestRectangleArea(new int[]{1, 10, 1000, 10000, 6000}));
+    }
+
     public int largestRectangleArea(int[] heights) {
         // 升序排列
         int[] tempInt = new int[heights.length + 1];
@@ -26,9 +28,5 @@ public class Main84 {
             stack.push(i);
         }
         return max;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new Main84().largestRectangleArea(new int[] { 1, 10, 1000, 10000, 6000 }));
     }
 }

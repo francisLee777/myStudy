@@ -1,4 +1,4 @@
-package leetcode_by_category.stack.single_stack;
+package leetcode_by_category.stack_and_queue.single_stack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
