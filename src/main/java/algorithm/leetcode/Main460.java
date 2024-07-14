@@ -60,7 +60,7 @@ public class Main460 {
             // 增加频率
             Node resNode = map.get(key);
             LinkedList<Node> list = frequencyMap.get(resNode.frequent);
-            // 先移出来
+            // 先移出来， todo 可以使用 linkedHashSet 优化这里的 remove 性能
             list.remove(resNode);
             resNode.frequent++;
             // 放到频率+1的列表中

@@ -3,30 +3,21 @@ package leetcode_by_category.double_pointer_and_slice_window;
 import java.util.Arrays;
 
 /**
- * 题目 #
- * Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue.
- * <p>
- * Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
- * <p>
- * Note: You are not suppose to use the library’s sort function for this problem.
- * <p>
- * Example 1:
- * <p>
- * <p>
- * Input: [2,0,2,1,1,0]
- * Output: [0,0,1,1,2,2]
- * <p>
- * Follow up:
- * <p>
- * A rather straight forward solution is a two-pass algorithm using counting sort.
- * First, iterate the array counting number of 0’s, 1’s, and 2’s, then overwrite array with total number of 0’s, then 1’s and followed by 2’s.
- * Could you come up with a one-pass algorithm using only constant space?
+ * 75. 颜色分类
+ * 给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
+ * 我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。
+ * 必须在不使用库内置的 sort 函数的情况下解决这个问题。
+ * 示例 1：
+ * 输入：nums = [2,0,2,1,1,0]
+ * 输出：[0,0,1,1,2,2]
+ * 示例 2：
+ * 输入：nums = [2,0,1]
+ * 输出：[0,1,2]
  *
  * @author lihaoyu
  * @date 2022/11/2 20:31
  */
 public class Main75 {
-
 
     public static void main(String[] args) {
         Main75 main75 = new Main75();
@@ -42,47 +33,36 @@ public class Main75 {
     }
 
     public void sortColors(int[] nums) {
-        // 先找一下左右不为0和2的第一个元素
-        int count0 = 0, count2 = 0, len = nums.length, start = 0, end = len - 1;
-        while (start <= end && nums[start] == 0) {
-            start++;
-            count0++;
-        }
-        while (start <= end && nums[end] == 2) {
-            end--;
-            count2++;
-        }
-        // 处理中间的
-        int i = start;
-        while (i <= end) {
-            //
+        //
+        int zero = 0;
+        int two = nums.length - 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) continue;
+            // 遇到了0或者2
             if (nums[i] == 0) {
-                if (nums[start] == 0) {
-                    start++;
+                // 从左边找第一个不为0的
+                for (; zero < i; zero++) {
+                    if (nums[zero] != 0) break;
+                }
+                // 不为0，这里一定要注意， 如果是 zero != i 则会导致无限循环
+                if (zero < i) {
+                    swap(nums, i, zero);
+                    i--;
                     continue;
                 }
-                swap(nums, start, i);
-                start++;
-                if (nums[i] != 2) {
-                    i++;
-                }
-                continue;
             }
             if (nums[i] == 2) {
-                if (nums[end] == 2) {
-                    end--;
+                // 从右边找第一个不为2的
+                for (; two > i; two--) {
+                    if (nums[two] != 2) break;
+                }
+                // 不为2
+                if (two > i) {
+                    swap(nums, i, two);
+                    i--;
                     continue;
                 }
-                swap(nums, end, i);
-                end--;
-                if (nums[i] != 0) {
-                    i++;
-                }
-
-                continue;
             }
-            i++;
         }
     }
-
 }

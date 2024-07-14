@@ -42,7 +42,7 @@ public class Main907 {
 
         long res = 0;
         for (int i = 0; i < arr.length; i++) {
-            res = (res + (((long) (left[i] - i)) * ((long) (i - right[i])) * ((long) (arr[i])))) % 100000007;
+            res = (res + ((((long) (left[i] - i)) * ((long) (i - right[i])) % 100000007) * ((long) (arr[i]))) % 100000007) % 100000007;
         }
         return (int) res;
     }

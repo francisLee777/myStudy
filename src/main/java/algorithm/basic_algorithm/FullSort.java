@@ -50,6 +50,8 @@ public class FullSort {
     }
 
     public static void main(String[] args) {
+        fun(new char[]{'1', '2', '3'}, 0);
+        System.out.println(res);
         System.out.println(new FullSort().permuteUnique(new int[]{1, 1, 2}));
     }
 
