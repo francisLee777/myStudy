@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /**
  * 表达式计算，手动收藏
- * 
+ *
  * @author lihaoyu
  * @date 2022/7/30 10:25
  */
@@ -20,6 +20,12 @@ public class Main227 {
             put('/', 2);
         }
     };
+
+    public static void main(String[] args) {
+        // System.out.println(new Main224().calculate("1+1*2*3*(1+1)"));
+        System.out.println(new Main227().calculate("   (1+(4+5+2)-3)+(6+8)"));
+
+    }
 
     void cal(Stack<Integer> number, Stack<Character> op) {
         if (number.size() < 2 || op.isEmpty())
@@ -90,11 +96,5 @@ public class Main227 {
         while (!op.isEmpty())
             cal(number, op);
         return number.pop();
-    }
-
-    public static void main(String[] args) {
-        // System.out.println(new Main224().calculate("1+1*2*3*(1+1)"));
-        System.out.println(new Main227().calculate("   (1+(4+5+2)-3)+(6+8)"));
-
     }
 }

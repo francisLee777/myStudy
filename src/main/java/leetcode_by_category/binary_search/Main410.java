@@ -3,8 +3,8 @@ package leetcode_by_category.binary_search;
 public class Main410 {
 
     // 手动收藏
-    // 给定一个非负整数数组 nums 和一个整数 m ，你需要将这个数组分成 m 个非空的连续子数组。
-    // 设计一个算法使得这 m 个子数组各自和的最大值最小。
+    // 给定一个非负整数数组 nums 和一个整数 k ，你需要将这个数组分成 k 个非空的连续子数组。
+    // 设计一个算法使得这 k 个子数组各自和的最大值最小。
 
     public int splitArray(int[] nums, int k) {
         int min = 0, max = 0, left = 0, right = 0, mid = 0;
