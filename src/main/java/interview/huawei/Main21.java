@@ -26,7 +26,7 @@ public class Main21 {
         return len+1;
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception {
+        System.out.println(fun(new int[]{-1,0,1,-4}));
     }
 }

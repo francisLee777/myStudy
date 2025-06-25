@@ -44,8 +44,30 @@ public class Main287 {
         return count - (nums.length - 1) * nums.length / 2;
     }
 
-    public static void main(String[] args) {
-        System.out.println(findDuplicate2(new int[] { 1, 3, 4, 2, 2 }));
 
+    // 换位置的方法，可行
+    public static int findDuplicate3(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] - 1 == i)
+                continue;
+                while(nums[i] - 1 != i){
+                    if( nums[i] == nums[nums[i]-1]){
+                        return nums[i];
+                    }
+                    swap(nums,i,nums[i]-1);
+                }
+        }
+        return 0;
+    }
+
+    static void swap(int[] nums, int i ,  int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(findDuplicate3(new int[] { 1, 3, 4, 2, 2 }));
+        System.out.println(findDuplicate3(new int[] { 3,2,1,2 }));
     }
 }
