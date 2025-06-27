@@ -24,7 +24,8 @@ public class Main227 {
     public static void main(String[] args) {
         // System.out.println(new Main224().calculate("1+1*2*3*(1+1)"));
         System.out.println(new Main227().calculate("   (1+(4+5+2)-3)+(6+8)"));
-
+        // 添加大括号测试用例
+        System.out.println(new Main227().calculate("   (1+{(4+5+2)-3})+(6+8)"));
     }
 
     void cal(Stack<Integer> number, Stack<Character> op) {
@@ -51,8 +52,8 @@ public class Main227 {
     }
 
     public int calculate(String s) {
-        // 去除空格
-        s = s.replace(" ", "");
+        // 去除空格, 并统一括号
+        s = s.replace(" ", "").replace('{', '(').replace('}', ')');
         if (s.length() == 0)
             return 0;
         Stack<Integer> number = new Stack<>();
@@ -88,7 +89,8 @@ public class Main227 {
                 continue;
             }
             // + - * /
-            while (!op.isEmpty() && op.peek() != '(' && map.get(op.peek()) >= map.get(c)) {
+            // 使用 containsKey 增加鲁棒性，防止 op.peek() 不在 map 中导致异常
+            while (!op.isEmpty() && map.containsKey(op.peek()) && map.get(op.peek()) >= map.get(c)) {
                 cal(number, op);
             }
             op.push(c);
